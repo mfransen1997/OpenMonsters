@@ -7,6 +7,7 @@ import me.mfransen.openmonsters.OpenMonstersGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.allowSoftwareMode=true;
 		new LwjglApplication(new OpenMonstersGame(), config);
 	}
 }
