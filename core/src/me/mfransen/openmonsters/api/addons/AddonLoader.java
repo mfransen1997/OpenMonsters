@@ -16,6 +16,7 @@ public class AddonLoader {
         JAXBContext context = JAXBContext.newInstance(AddonInfo.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         AddonInfo info = (AddonInfo) unmarshaller.unmarshal(zf.getInputStream(zf.getEntry("addon.xml")));
+        System.out.println(String.format("Loaded addon '%1s' v%2s by %3s",info.getId(),info.getVersion(),info.getAuthor()));
         return new Addon(info);
     }
 }

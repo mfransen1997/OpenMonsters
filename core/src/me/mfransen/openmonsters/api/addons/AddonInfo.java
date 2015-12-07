@@ -10,7 +10,6 @@ public class AddonInfo {
     private String version;
     private String author;
     private String updateSite;
-    private String clazz;
     @XmlElement
     private void setId(String id) {
         this.id = id;
@@ -27,12 +26,10 @@ public class AddonInfo {
     private void setUpdateSite(String updateSite) {
         this.updateSite = updateSite;
     }
-    @XmlElement
-    private void setClazz(String clazz) {
-        this.clazz = clazz;
-    }
     public String getId() {
         return id;
     }
+    public String getAuthor() { return author; }
     public String getVersion() { return version; }
+    public String getUpdateSite() { return updateSite; }
 }
