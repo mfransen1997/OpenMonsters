@@ -15,7 +15,7 @@ public class AddonLoader {
         ZipFile zf = new ZipFile(f);
         JAXBContext context = JAXBContext.newInstance(AddonInfo.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        AddonInfo info = (AddonInfo) unmarshaller.unmarshal(zf.getInputStream(zf.getEntry("Addon.xml")));
+        AddonInfo info = (AddonInfo) unmarshaller.unmarshal(zf.getInputStream(zf.getEntry("addon.xml")));
         return new Addon(info);
     }
 }

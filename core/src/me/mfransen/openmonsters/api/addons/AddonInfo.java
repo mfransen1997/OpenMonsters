@@ -1,7 +1,7 @@
 package me.mfransen.openmonsters.api.addons;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="Addon")
@@ -34,4 +34,5 @@ public class AddonInfo {
     public String getId() {
         return id;
     }
+    public String getVersion() { return version; }
 }
