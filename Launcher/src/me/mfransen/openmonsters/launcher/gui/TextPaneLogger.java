@@ -1,4 +1,4 @@
-package me.mfransen.openmonsters.desktop.gui;
+package me.mfransen.openmonsters.launcher.gui;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -21,11 +21,11 @@ public class TextPaneLogger extends Handler {
     public void publish(LogRecord record) {
         SimpleAttributeSet keyword = new SimpleAttributeSet();
         if(record.getLevel()== Level.WARNING)
-            StyleConstants.setForeground(keyword, Color.yellow);
+            StyleConstants.setForeground(keyword, Color.orange);
         else if(record.getLevel()==Level.SEVERE)
             StyleConstants.setForeground(keyword, Color.red);
         else
-            StyleConstants.setForeground(keyword, Color.white);
+            StyleConstants.setForeground(keyword, Color.black);
         //StyleConstants.setBold(keyword,true);
         try {
             textPane.getStyledDocument().insertString(textPane.getStyledDocument().getLength(),String.format("[%1s] %2s\n",record.getLevel().getLocalizedName(),record.getMessage()),keyword);

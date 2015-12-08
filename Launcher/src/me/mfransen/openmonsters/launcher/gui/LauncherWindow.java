@@ -1,4 +1,4 @@
-package me.mfransen.openmonsters.desktop.gui;
+package me.mfransen.openmonsters.launcher.gui;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -21,5 +21,7 @@ public class LauncherWindow extends JFrame {
                 return false;
             }
         });
+        pack();
+        setPreferredSize(new Dimension(800,600));
     }
 }

@@ -1,21 +1,12 @@
 package me.mfransen.openmonsters.desktop;
 
-import me.mfransen.openmonsters.api.addons.AddonLoader;
-import me.mfransen.openmonsters.desktop.gui.LauncherWindow;
-
-import javax.swing.*;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import me.mfransen.openmonsters.OpenMonstersGame;
 
 public class DesktopLauncher {
-	public static void main (String[] arg) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
-		AddonLoader loader = new AddonLoader();
-		/*LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		//config.allowSoftwareMode=true;
-		new LwjglApplication(new OpenMonstersGame(), config);*/
-		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		LauncherWindow window = new LauncherWindow();
-		window.pack();
-		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		window.setVisible(true);
-
+	public static void main (String[] arg) {
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		new LwjglApplication(new OpenMonstersGame(), config);
 	}
 }
