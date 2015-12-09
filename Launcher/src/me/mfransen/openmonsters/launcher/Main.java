@@ -23,7 +23,7 @@ public class Main {
         if(!dataFolder.exists())
             dataFolder.mkdir();
         logger.info("Setting data folder: "+dataFolder.getPath());
-        if(!(pluginFolder = new File(dataFolder,"Plugins")).exists())
+        if(!(pluginFolder = new File(dataFolder,"Addons")).exists())
             pluginFolder.mkdir();
         sal.loadAddons(pluginFolder);
         for(AddonInfo info : sal.addons)
