@@ -32,6 +32,8 @@ public class SimpleAddonLoader {
                     f.delete();
                     Main.logger.info("Extracted "+f.getName());
                     loadAddon(new File(Main.addonsFolder,f.getName().substring(0,f.getName().lastIndexOf('.'))));
+                } else {
+                    Main.logger.warning("Unable to extract, "+f.getName()+", folder already exists.");
                 }
             }
         }
