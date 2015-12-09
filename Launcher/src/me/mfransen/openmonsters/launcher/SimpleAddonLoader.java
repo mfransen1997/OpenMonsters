@@ -1,5 +1,7 @@
 package me.mfransen.openmonsters.launcher;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -15,15 +17,16 @@ import java.util.zip.ZipFile;
 public class SimpleAddonLoader {
     public List<AddonInfo> addons = new ArrayList<AddonInfo>();
     public void loadAddon(File f) throws IOException, JAXBException {
-        ZipFile zf = new ZipFile(f);
         JAXBContext context = JAXBContext.newInstance(AddonInfo.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        AddonInfo info = (AddonInfo) unmarshaller.unmarshal(zf.getInputStream(zf.getEntry("addon.xml")));
+        AddonInfo info = (AddonInfo) unmarshaller.unmarshal(new File(f,"addon.xml"));
         addons.add(info);
     }
+    @SuppressWarnings("ConstantConditions")
     public void loadAddons(File dir) throws IOException, JAXBException {
         for(File f : dir.listFiles()) {
-            loadAddon(f);
+            if(f.isDirectory())
+                loadAddon(f);
         }
     }
 }
