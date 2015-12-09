@@ -21,10 +21,12 @@ public class Main {
         window.setVisible(true);
         dataFolder = new File(getDataFolder(System.getProperty("os.name")));
         if(!dataFolder.exists())
-            dataFolder.mkdir();
+            if(!dataFolder.mkdir())
+                logger.severe("Unable to create Data folder.");
         logger.info("Setting data folder: "+dataFolder.getPath());
         if(!(pluginFolder = new File(dataFolder,"Addons")).exists())
-            pluginFolder.mkdir();
+            if(!pluginFolder.mkdir())
+                logger.warning("Unable to create Addons Folder.");
         sal.loadAddons(pluginFolder);
         for(AddonInfo info : sal.addons)
             ((DefaultTableModel)window.form.addonTable.getModel()).addRow(new Object[]{info.getId(),info.getAuthor(),info.getVersion()});
