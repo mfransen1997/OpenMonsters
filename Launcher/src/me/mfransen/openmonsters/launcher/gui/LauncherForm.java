@@ -14,5 +14,6 @@ public class LauncherForm {
     private JPasswordField passwordField1;
     private JButton launchButton;
     private JCheckBox remberLoginCheckBox;
+    public JTree optionsMain;
 
 }
