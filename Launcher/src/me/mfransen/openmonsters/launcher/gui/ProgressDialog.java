@@ -30,7 +30,9 @@ public class ProgressDialog extends JDialog {
     private void onOK() {
         dispose();
     }
-    public static void showDialog(final InputStream stream, final File output, final int size, final File outputFolder) {
+    public static void showDialog(final InputStream stream, final File output, final int size, final File outputFolder, final boolean deleteOutputFolder) {
+        if(!new File(Main.dataFolder,"Cache").exists())
+            new File(Main.dataFolder,"Cache").mkdirs();
         final ProgressDialog dialog = new ProgressDialog();
         dialog.pack();
         SwingWorker<Integer,Void> worker = new SwingWorker<Integer, Void>() {
@@ -44,7 +46,6 @@ public class ProgressDialog extends JDialog {
                     os.write(buffer,0,bytesRead);
                     totalBytes += bytesRead;
                     setProgress((int)((totalBytes*100)/size));
-                    Main.logger.info((totalBytes*100)/size+"%");
                 }
                 os.close();
                 dialog.statusLabel.setText("Extracting...");
@@ -53,8 +54,10 @@ public class ProgressDialog extends JDialog {
                     @Override
                     public void run() {
                         try {
-                            outputFolder.delete();
-                            outputFolder.mkdir();
+                            if(deleteOutputFolder) {
+                                outputFolder.delete();
+                                outputFolder.mkdir();
+                            }
                             Main.sal.extractAddon(output,outputFolder);
                             output.delete();
                             dialog.progressBar1.setVisible(false);
@@ -73,6 +76,7 @@ public class ProgressDialog extends JDialog {
             public void propertyChange(PropertyChangeEvent evt) {
                 if("progress".equalsIgnoreCase(evt.getPropertyName())) {
                     dialog.progressBar1.setValue((Integer)evt.getNewValue());
+                    dialog.progressBar1.setToolTipText((Integer)evt.getNewValue()+"%");
                 }
             }
         });

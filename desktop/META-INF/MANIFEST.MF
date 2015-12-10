@@ -1,3 +1,15 @@
 Manifest-Version: 1.0
+Class-Path: gdx-ai-1.6.0.jar jinput-platform-2.0.5-natives-windows.jar
+  lwjgl-2.9.2.jar lwjgl_util-2.9.2.jar gdx-platform-1.7.1-natives-desk
+ top.jar lwjgl-platform-2.9.2-natives-linux.jar lwjgl-platform-2.9.2-n
+ atives-osx.jar vis-ui-0.9.2.jar jinput-platform-2.0.5-natives-linux.j
+ ar gdx-controllers-desktop-1.7.1.jar gdx-backend-lwjgl-1.7.1.jar jlay
+ er-1.0.1-gdx.jar libgdx-utils-box2d-0.13.2.jar gdx-backend-headless-1
+ .7.1.jar jutils-1.0.0.jar gdx-box2d-1.7.1.jar jinput-platform-2.0.5-n
+ atives-osx.jar ashley-1.6.0.jar gdx-tools-1.7.1.jar gdx-1.7.1.jar gdx
+ -controllers-platform-1.7.1-natives-desktop.jar jorbis-0.0.17.jar lwj
+ gl-platform-2.9.2-natives-windows.jar jinput-2.0.5.jar libgdx-utils-0
+ .13.2.jar gdx-box2d-platform-1.7.1-natives-desktop.jar gdx-controller
+ s-1.7.1.jar
 Main-Class: me.mfransen.openmonsters.desktop.DesktopLauncher
 

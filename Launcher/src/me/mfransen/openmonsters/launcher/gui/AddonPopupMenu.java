@@ -60,6 +60,6 @@ public class AddonPopupMenu extends JPopupMenu {
         File f = new File(Main.dataFolder,"Cache"+File.separator+name+".zip");
         if(f.exists())
             f.delete();
-        ProgressDialog.showDialog(is,f,size,new File(Main.addonsFolder,name));
+        ProgressDialog.showDialog(is,f,size,new File(Main.addonsFolder,name),true);
     }
 }

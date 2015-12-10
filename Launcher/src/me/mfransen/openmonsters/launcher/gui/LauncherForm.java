@@ -7,13 +7,16 @@ import javax.swing.*;
  */
 public class LauncherForm {
     public JPanel mainPanel;
-    private JTabbedPane tabbedPane1;
+    public JTabbedPane tabbedPane1;
     public JTextPane consoleTextPane;
     public JTable addonTable;
     private JTextField textField1;
     private JPasswordField passwordField1;
-    private JButton launchButton;
+    public JButton launchButton;
     private JCheckBox remberLoginCheckBox;
     public JTree optionsMain;
+    public JPanel loginPanel;
+    public JPanel tabAddonManager;
+    public JPanel tabOptions;
 
 }

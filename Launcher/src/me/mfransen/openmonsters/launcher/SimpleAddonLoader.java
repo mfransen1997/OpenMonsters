@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,18 +84,20 @@ public class SimpleAddonLoader {
                 }
                 fos.close();
             }
-            Main.logger.info("Extracted: "+entry.getName());
+            //Main.logger.info("Extracted: "+entry.getName());
             entry = zis.getNextEntry();
         }
         input.close();
     }
-    public void getUpdateInfo(AddonInfo info) throws IOException, ParserConfigurationException, SAXException {
+    public void getUpdateInfo(AddonInfo info) throws MalformedURLException {
         URL url = new URL(info.getUpdateSite());
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        AddonRepository repo = new AddonRepository(db.parse(info.getUpdateSite()));
-        if(repo.addons.containsKey(info.getId()))
-            info.downloadInfo = repo.addons.get(info.getId());
-
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            AddonRepository repo = new AddonRepository(db.parse(info.getUpdateSite()));
+            if (repo.addons.containsKey(info.getId()))
+                info.downloadInfo = repo.addons.get(info.getId());
+        } catch (Exception e) {
+        }
     }
 }
