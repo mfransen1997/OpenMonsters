@@ -2,6 +2,7 @@ package me.mfransen.openmonsters.launcher;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.File;
 
 @XmlRootElement(name="Addon")
 public class AddonInfo {
@@ -9,6 +10,8 @@ public class AddonInfo {
     private String version;
     private String author;
     private String updateSite;
+    public RepositoryAddonInfo downloadInfo;
+    public File folder;
     @XmlElement
     private void setId(String id) {
         this.id = id;
@@ -21,7 +24,7 @@ public class AddonInfo {
     private void setAuthor(String author) {
         this.author = author;
     }
-    @XmlElement
+    @XmlElement(name="update-site")
     private void setUpdateSite(String updateSite) {
         this.updateSite = updateSite;
     }

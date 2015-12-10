@@ -25,7 +25,7 @@ public class TextPaneLogger extends Handler {
         else if(record.getLevel()==Level.SEVERE)
             StyleConstants.setForeground(keyword, Color.red);
         else
-            StyleConstants.setForeground(keyword, Color.black);
+            StyleConstants.setForeground(keyword, Color.white);
         //StyleConstants.setBold(keyword,true);
         try {
             textPane.getStyledDocument().insertString(textPane.getStyledDocument().getLength(),String.format("[%1s] %2s\n",record.getLevel().getLocalizedName(),record.getMessage()),keyword);
