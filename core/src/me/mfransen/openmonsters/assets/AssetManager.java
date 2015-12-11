@@ -19,6 +19,9 @@ import java.util.Set;
 public class AssetManager {
     private Map<String,Object> objects = new HashMap<String, Object>();
     private Map<Class<?>,AssetLoader> loaders = new HashMap<Class<?>, AssetLoader>();
+    public AssetManager() {
+        loadDefaultLoaders();
+    }
     private void loadDefaultLoaders() {
         loaders.put(Texture.class,new TextureLoader());
     }
