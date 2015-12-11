@@ -32,10 +32,9 @@ public class Main {
             if(!addonsFolder.mkdir())
                 logger.warning("Unable to create Addons folder.");
         reloadAddonInfo(window.form.addonTable);
-        int version = Updater.getVersion();
-        int latest = Updater.getLatestVersion();
-        if(latest>version)
-            Updater.Update(latest);
+        if(Updater.getVersion().isOlder(Updater.getLatestVersion())&&JOptionPane.showConfirmDialog(null,"There is a new update available.\nWould you like to update?","Update Available",JOptionPane.YES_NO_OPTION)==0) {
+            Updater.Update();
+        }
     }
     public static void reloadAddonInfo(JTable table) throws ParserConfigurationException, JAXBException, SAXException, IOException {
         sal.addons.clear();

@@ -26,7 +26,7 @@ public class OpenMonstersGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
         dataFolder = new File(getDataFolder(System.getProperty("os.name")));
 		try {
-			textures.load(OpenMonstersGame.class.getResourceAsStream("assets/badlogic.png"),"badlogic");
+			textures.load(OpenMonstersGame.class.getResourceAsStream("/assets/badlogic.jpg"),"badlogic");
 			img = textures.get("badlogic");
 		} catch (IOException e) {
 			e.printStackTrace();
