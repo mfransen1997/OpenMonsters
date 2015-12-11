@@ -9,4 +9,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(new OpenMonstersGame(), config);
 	}
+	private void loadAssets() {
+
+	}
 }

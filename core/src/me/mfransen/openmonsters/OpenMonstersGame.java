@@ -2,32 +2,26 @@ package me.mfransen.openmonsters;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.AssetLoader;
-import com.badlogic.gdx.assets.loaders.resolvers.AbsoluteFileHandleResolver;
-import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import me.mfransen.openmonsters.assets.AssetManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class OpenMonstersGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	TextureManager textures = new TextureManager();
+	AssetManager assets = new AssetManager();
 	public static File dataFolder;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
         dataFolder = new File(getDataFolder(System.getProperty("os.name")));
 		try {
-			textures.load(OpenMonstersGame.class.getResourceAsStream("/assets/badlogic.jpg"),"badlogic");
-			img = textures.get("badlogic");
+			assets.load(OpenMonstersGame.class.getResourceAsStream("/assets/badlogic.jpg"),"badlogic",Texture.class);
+			img = assets.get("badlogic");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
