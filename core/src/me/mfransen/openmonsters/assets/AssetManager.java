@@ -19,11 +19,14 @@ import java.util.Set;
 public class AssetManager {
     private Map<String,Object> objects = new HashMap<String, Object>();
     private Map<Class<?>,AssetLoader> loaders = new HashMap<Class<?>, AssetLoader>();
+    public Map<String,Class<?>> mimeTypes = new HashMap<String, Class<?>>();
     public AssetManager() {
         loadDefaultLoaders();
     }
     private void loadDefaultLoaders() {
         loaders.put(Texture.class,new TextureLoader());
+        mimeTypes.put("png",Texture.class);
+        mimeTypes.put("jpg",Texture.class);
     }
     public boolean load(File f, String name, Class<?> type) throws IOException {
         return load(new FileInputStream(f),name,type);
@@ -41,6 +44,7 @@ public class AssetManager {
         return load(response,name,type);
     }
     public boolean load(byte[] data, String name, Class<?> type) {
+        Class<?> t = type;
         if(loaders.containsKey(type)) {
             objects.put(name, loaders.get(type).load(data));
             return true;
@@ -64,5 +68,34 @@ public class AssetManager {
     }
     public boolean containsLoader(Class<?> type) {
         return loaders.containsKey(type);
+    }
+    public void loadDirectory(File directory) {
+        loadDirectory(directory,"");
+    }
+    public void loadDirectory(File directory,String prefix) {
+        for(File f : directory.listFiles()) {
+            if(f.isDirectory())
+                loadDirectory(f,prefix+File.separator+f.getName());
+            else {
+                String extension = getExtension(f.getName());
+                if(mimeTypes.containsKey(extension)) {
+                    Class<?> mimeType = mimeTypes.get(extension);
+                    if(containsLoader(mimeType))
+                        try {
+                            load(f,f.getName().substring(0,f.getName().length()-extension.length()-1),mimeType);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                }
+            }
+        }
+    }
+    public static String getExtension(String file) {
+        String extension = "";
+        int i = file.lastIndexOf('.');
+        if (i > 0) {
+            extension = file.substring(i+1);
+        }
+        return extension;
     }
 }
