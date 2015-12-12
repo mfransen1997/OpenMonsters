@@ -51,9 +51,6 @@ public class OpenMonstersGame extends ApplicationAdapter {
             }
         }
     }
-    private void loadDirectory() {
-
-    }
     private static String getDataFolder(String os) {
         if(os.toLowerCase().contains("windows")) {
             return System.getenv("APPDATA")+ File.separator+"OpenMonsters";
