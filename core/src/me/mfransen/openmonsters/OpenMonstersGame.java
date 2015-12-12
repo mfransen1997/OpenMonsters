@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import me.mfransen.openmonsters.assets.AssetManager;
+import me.mfransen.openmonsters.map.Map;
+import me.mfransen.openmonsters.map.MapLayer;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +18,8 @@ import java.util.logging.Logger;
 
 public class OpenMonstersGame extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img;
 	AssetManager assets = new AssetManager();
+    Map m;
 	public static File dataFolder;
     public static Logger logger;
 	@Override
@@ -26,7 +28,11 @@ public class OpenMonstersGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
         dataFolder = new File(getDataFolder(System.getProperty("os.name")));
         loadDefaultAssets();
-        img = assets.get("badlogic");
+        m = new Map((Texture)assets.get("tileset"),8,8,64);
+        MapLayer layer = new MapLayer(m);
+        layer.tiles[1][1] = 1;
+        layer.tiles[1][0] = 2;
+        m.layers.add(layer);
 	}
 	private void loadDefaultAssets() {
         File source = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
@@ -65,7 +71,7 @@ public class OpenMonstersGame extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(img, 0, 0);
+        m.drawMap(batch,0,0);
 		batch.end();
 	}
 }
