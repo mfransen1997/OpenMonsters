@@ -28,10 +28,17 @@ public class OpenMonstersGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
         dataFolder = new File(getDataFolder(System.getProperty("os.name")));
         loadDefaultAssets();
-        m = new Map((Texture)assets.get("tileset"),8,8,64);
+        m = new Map((Texture)assets.get("tileset"),8,7,32);
         MapLayer layer = new MapLayer(m);
-        layer.tiles[1][1] = 1;
-        layer.tiles[1][0] = 2;
+        layer.tiles[0][0]=32;
+        layer.tiles[1][0]=33;
+        layer.tiles[2][0]=34;
+        layer.tiles[0][1]=16;
+        layer.tiles[1][1]=17;
+        layer.tiles[2][1]=18;
+        layer.tiles[0][2]=0;
+        layer.tiles[1][2]=1;
+        layer.tiles[2][2]=2;
         m.layers.add(layer);
 	}
 	private void loadDefaultAssets() {

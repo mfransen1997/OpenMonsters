@@ -11,7 +11,7 @@ public class MapLayer {
         properties = new int[parent.getWidth()][parent.getHeight()];
         for(int x = 0; x < parent.getWidth(); x++) {
             for(int y = 0; y < parent.getHeight(); y++) {
-                tiles[x][y] = 0;
+                tiles[x][y] = -1;
             }
         }
     }
