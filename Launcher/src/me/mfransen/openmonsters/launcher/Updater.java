@@ -9,6 +9,7 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -50,8 +51,17 @@ public class Updater {
         try {
             JSONObject version = getLatestVersionInfo();
             JSONArray array = (JSONArray)version.get("assets");
-            for(int i = 0; i < array.size(); i++) {
-                URL url = new URL(((JSONObject)array.get(i)).get("browser_download_url").toString());
+            Iterator<Object> it = array.iterator();
+            JSONObject asset = null;
+            while(it.hasNext()) {
+                JSONObject object = (JSONObject)it.next();
+                if(object.get("name").toString().equalsIgnoreCase("data.zip"))
+                    asset = object;
+                else
+                    it.remove();
+            }
+            if(asset!=null) {
+                URL url = new URL(asset.get("browser_download_url").toString());
                 ProgressDialog.showDialog(url.openStream(),new File(Main.dataFolder,"Cache"+File.separator+version.get("tag_name").toString()+".zip"),url.openConnection().getContentLength(),Main.dataFolder,false);
             }
             File versionFile = new File(Main.dataFolder,"version.txt");

@@ -1,5 +1,6 @@
 package me.mfransen.openmonsters.assets;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.InputStream;
 
 /**
@@ -7,5 +8,5 @@ import java.io.InputStream;
  */
 public interface AssetLoader<T> {
     Class<? extends T> type();
-    T load(byte[] data);
+    T load(AssetManager assets, byte[] data);
 }

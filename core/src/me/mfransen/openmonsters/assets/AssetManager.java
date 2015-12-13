@@ -3,12 +3,10 @@ package me.mfransen.openmonsters.assets;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
+import me.mfransen.openmonsters.assets.loaders.MapLoader;
 import me.mfransen.openmonsters.assets.loaders.TextureLoader;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -24,9 +22,8 @@ public class AssetManager {
         loadDefaultLoaders();
     }
     private void loadDefaultLoaders() {
-        loaders.put(Texture.class,new TextureLoader());
-        mimeTypes.put("png",Texture.class);
-        mimeTypes.put("jpg",Texture.class);
+        registerLoader(new TextureLoader(),"png","jpg");
+        registerLoader(new MapLoader(),"map");
     }
     public boolean load(File f, String name, Class<?> type) throws IOException {
         return load(new FileInputStream(f),name,type);
@@ -46,7 +43,7 @@ public class AssetManager {
     public boolean load(byte[] data, String name, Class<?> type) {
         Class<?> t = type;
         if(loaders.containsKey(type)) {
-            objects.put(name, loaders.get(type).load(data));
+            objects.put(name, loaders.get(type).load(this,data));
             return true;
         } else
             return false;
@@ -63,8 +60,11 @@ public class AssetManager {
     public Set<String> loadedAssets() {
         return objects.keySet();
     }
-    public void registerLoader(AssetLoader loader) {
+    public void registerLoader(AssetLoader loader, String... mimeTypes) {
         loaders.put(loader.type(),loader);
+        for(String mimeType : mimeTypes) {
+            this.mimeTypes.put(mimeType,loader.type());
+        }
     }
     public boolean containsLoader(Class<?> type) {
         return loaders.containsKey(type);

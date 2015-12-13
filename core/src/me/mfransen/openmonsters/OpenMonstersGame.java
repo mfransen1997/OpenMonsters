@@ -17,29 +17,21 @@ import java.util.jar.JarFile;
 import java.util.logging.Logger;
 
 public class OpenMonstersGame extends ApplicationAdapter {
+    public static OpenMonstersGame instance;
 	SpriteBatch batch;
-	AssetManager assets = new AssetManager();
+	public AssetManager assets = new AssetManager();
     Map m;
 	public static File dataFolder;
     public static Logger logger;
 	@Override
 	public void create () {
+        instance = this;
         logger = Logger.getLogger("OpenMonsters");
 		batch = new SpriteBatch();
         dataFolder = new File(getDataFolder(System.getProperty("os.name")));
         loadDefaultAssets();
-        m = new Map((Texture)assets.get("tileset"),8,7,32);
-        MapLayer layer = new MapLayer(m);
-        layer.tiles[0][0]=32;
-        layer.tiles[1][0]=33;
-        layer.tiles[2][0]=34;
-        layer.tiles[0][1]=16;
-        layer.tiles[1][1]=17;
-        layer.tiles[2][1]=18;
-        layer.tiles[0][2]=0;
-        layer.tiles[1][2]=1;
-        layer.tiles[2][2]=2;
-        m.layers.add(layer);
+        m = assets.get("untitled");
+        m.layers.get(0).tiles[1][1] = -1;
 	}
 	private void loadDefaultAssets() {
         File source = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
