@@ -2,9 +2,7 @@ package me.mfransen.openmonsters.dev;
 
 import java.io.File;
 
-/**
- * Created by matt on 12/15/15.
- */
+
 public class Asset {
     private String name;
     private File file;

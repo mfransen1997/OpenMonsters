@@ -7,7 +7,6 @@ import org.xml.sax.SAXException;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,9 +16,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by matt on 12/14/15.
- */
 public class Project extends DefaultTreeModel{
     private Map<String,Asset> textures = new HashMap<String, Asset>();
     private Map<String,Asset> maps = new HashMap<String, Asset>();

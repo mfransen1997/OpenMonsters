@@ -5,9 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by matt on 12/12/15.
- */
 public class MainWindow extends JFrame {
     public MainForm mainForm = new MainForm();
     public MainWindow() {
